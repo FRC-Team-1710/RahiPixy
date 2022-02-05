@@ -29,7 +29,7 @@ public class ShadowLine extends CommandBase {
 	}
 
 	public void initialize() {
-		pixy = Cameras.getPixyCamera().getPixy();
+		pixy = Cameras.getPixyCamera().getPixy2();
 		pixy.getLine().setMode(Pixy2Line.LINE_MODE_WHITE_LINE);
 		pixy.setLamp((byte) 1, (byte) 1);
 		pixy.setLED(255, 255, 255);
@@ -68,7 +68,7 @@ public class ShadowLine extends CommandBase {
 			hasLine = false;
 			linePosition = frameMid;
 		}
-	}
+	} 
 
 	/**
 	 * Gets angle of line in Pixy

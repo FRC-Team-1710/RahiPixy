@@ -3,16 +3,16 @@ package frc.robot.subsystems.Vision;
 
 public class Cameras {
 
-	private static PixyCamera pixy;
+	public static PixyCamera pixy2;
 
 	public static void setup() {
 		//initDrive();
-		pixy = new PixyCamera();
+		pixy2 = new PixyCamera();
 		initLine();
 	}
 
 	public static PixyCamera getPixyCamera() {
-		return pixy;
+		return pixy2;
 	}
 
 	public static void initLine() {
