@@ -1,5 +1,7 @@
 package frc.robot.subsystems.Vision;
 
+import javax.sound.sampled.Line;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2Line;
@@ -36,22 +38,22 @@ public class ShadowLine extends CommandBase {
 		frameMid = pixy.getFrameHeight() / 2;
 	}
 
-
+	@Override
 	public void execute() {
 		pixy.getLine().getMainFeatures();
-		Pixy2Line lines = pixy.getLine();
+		Vector v[] = pixy.getLine().getVectorCache();
 		double testAngle = 0.0;
 		double testLength = 0.0;
 		int testPosition = 0;
-		if (lines != null) {
-			for (Vector v : lines) {
-				double x = v.getX1() - v.getX0();
-				double y = v.getY1() - v.getY0();
+		if (v != null) {
+			for (int i = 0; i < v.length; i++) {
+				double x = v[i].getX1() - v[i].getX0();
+				double y = v[i].getY1() - v[i].getY0();
 				double angle = 90.0;
 				if (x != 0)
 					angle = -Math.toDegrees(Math.atan(y / x));
 				double length = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-				int position = (v.getY0() + v.getY1()) / 2;
+				int position = (v[i].getY0() + v[i].getY1()) / 2;
 				if (length > testLength) {
 					testLength = length;
 					testAngle = angle;
